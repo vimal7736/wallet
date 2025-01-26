@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
+  Pressable,
   Clipboard,
   Alert,
   Animated,
@@ -17,7 +17,6 @@ const WalletDetailScreen = ({ route }) => {
   const translateY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Create a looping animation for the background
     Animated.loop(
       Animated.sequence([
         Animated.timing(translateY, {
@@ -73,9 +72,9 @@ const WalletDetailScreen = ({ route }) => {
           <Text style={styles.value}>{wallet.balance}</Text>
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={handleCopyAddress}>
+        <Pressable style={styles.button} onPress={handleCopyAddress}>
           <Text style={styles.buttonText}>Copy Address</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   backgroundAnimation: {
     position: 'absolute',
     width: width,
-    height: height * 9, 
+    height: height * 9,
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -105,12 +104,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 20,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.15,
-    shadowRadius: 12,
+
     elevation: 5,
-    zIndex: 10, 
+    zIndex: 10,
   },
   icon: {
     fontSize: 50,
@@ -144,7 +140,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   button: {
-    backgroundColor: '#16a085',
+    backgroundColor: "#6200ea",
     paddingVertical: 14,
     paddingHorizontal: 30,
     borderRadius: 10,

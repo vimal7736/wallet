@@ -3,10 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import WalletScreen from './screens/WalletScreen';
 import WalletDetailScreen from './screens/WalletDetailScreen';
-import { View, StyleSheet, Animated } from 'react-native';
-import Svg, { Path } from 'react-native-svg'; // Importing SVG components
+import { View, Text, StyleSheet, Animated } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
+import { wallets, assets } from './dummyData';
+import PortfolioScreen from './screens/PorfolioScreen';
 
-// Rotating Cryptocurrency Logo (e.g., Bitcoin)
 const CryptoLogo = () => {
   const rotation = new Animated.Value(0);
 
@@ -41,7 +42,6 @@ const CryptoLogo = () => {
   );
 };
 
-// Loading Screen with rotating crypto logo
 const LoadingScreen = () => (
   <View style={styles.loadingContainer}>
     <CryptoLogo />
@@ -53,11 +53,10 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [loading, setLoading] = useState(true);
 
-  // Simulate loading delay
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000); // Adjust time for how long the loading dots should show
+    }, 3000);
   }, []);
 
   return (
@@ -69,12 +68,31 @@ export default function App() {
           <Stack.Screen
             name="Wallets"
             component={WalletScreen}
-            options={{ headerTitle: 'My Wallets' }}
+            options={({ navigation }) => ({
+              title: 'My Wallets',
+              headerStyle: {
+                backgroundColor: '#333', // Dark background
+              },
+              headerTintColor: '#fff', // Light text color
+            })}
+            initialParams={{ wallets, assets }}
           />
           <Stack.Screen
             name="Details"
             component={WalletDetailScreen}
-            options={{ headerTitle: 'Wallet Details' }}
+            options={{ title: 'Wallet Details' }}
+          />
+          <Stack.Screen
+            name="Portfolio"
+            component={PortfolioScreen}
+            options={{
+              title: 'My Portfolio',
+              headerStyle: {
+                backgroundColor: '#333', // Dark background
+              },
+              headerTintColor: '#fff', // Light text color
+            }}
+            initialParams={{ wallets, assets }}
           />
         </Stack.Navigator>
       )}
@@ -88,5 +106,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1c1c1c',
+  },
+  portfolioButton: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    backgroundColor: '#1a73e8', // Blue background
+    borderRadius: 20,
+    marginRight: 10,
+    marginTop: 20, // Adjust for proper spacing
+  },
+  portfolioButtonText: {
+    color: '#fff',
+    fontSize: 14, // Small font size
+    fontWeight: 'bold',
   },
 });
