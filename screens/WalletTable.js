@@ -40,14 +40,19 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         marginBottom: 16,
-        backgroundColor: '#333',
+        backgroundColor: '#121212', // Matches chart's gradient background
         borderRadius: 10,
         padding: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 5,
     },
     tableTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#ecf0f1',
+        color: '#ffffff', // Matches chart label color
         marginBottom: 12,
     },
     scrollContainer: {
@@ -67,13 +72,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: 0.5,
-        borderBottomColor: '#ccc',
+        borderBottomColor: '#444', // Subtle border color
     },
     tableHeaderRow: {
-        backgroundColor: '#333',
+        backgroundColor: '#333', // Matches the gradient's darker tone
     },
     tableHeader: {
-        color: '#ecf0f1',
+        color: '#ffffff', // Matches chart label color
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 14,
@@ -84,17 +89,17 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     tableCell: {
-        color: '#bdc3c7',
+        color: '#cccccc', // Subtle text color for rows
         textAlign: 'center',
         fontSize: 14,
         paddingHorizontal: 8,
         flex: 1,
     },
     evenRow: {
-        backgroundColor: '#333',
+        backgroundColor: 'rgba(72, 219, 251, 0.1)', // Slightly matches chart dataset color
     },
     oddRow: {
-        backgroundColor: '#333',
+        backgroundColor: '#121212', // Matches table background
     },
 });
 

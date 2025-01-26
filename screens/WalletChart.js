@@ -9,8 +9,9 @@ const WalletChart = ({ wallets }) => {
 
     useEffect(() => {
         const updateWidth = () => setScreenWidth(Dimensions.get('window').width);
-        Dimensions.addEventListener('change', updateWidth);
-        return () => Dimensions.removeEventListener('change', updateWidth);
+        const subscription = Dimensions.addEventListener('change', updateWidth);
+
+        return () => subscription?.remove();
     }, []);
 
     const chartData = {
@@ -25,10 +26,9 @@ const WalletChart = ({ wallets }) => {
     };
 
     const chartConfig = {
-        backgroundColor: 'linear-gradient(180deg, rgba(32, 32, 32, 1) 0%, rgba(44, 44, 44, 1) 100%)',
-        backgroundGradientFrom: '#333',
+        backgroundGradientFrom: '#2C3E50',
         backgroundGradientTo: '#121212',
-        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, 
+        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
         strokeWidth: 2, // Line thickness
         barPercentage: 0.5,
@@ -39,7 +39,6 @@ const WalletChart = ({ wallets }) => {
             stroke: '#1ABC9C',
         },
     };
-    
 
     const handleChartSwitch = () => {
         setIsLineChart(!isLineChart);
@@ -75,10 +74,9 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         padding: 16,
-        // backgroundColor: '#2C3E50',
-        borderRadius: 10,
-        elevation: 8,
         alignItems: 'center',
+        backgroundColor: '#2C3E50',
+        borderRadius: 10,
     },
     title: {
         fontSize: 20,
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     toggleButton: {
-        backgroundColor: '#121212',
+        backgroundColor: '#ccc',
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 25,
